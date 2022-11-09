@@ -1,10 +1,10 @@
 from .base import *
 
-THIRD_PARTY_APPS = ['debug_toolbar']
+THIRD_PARTY_APPS = ["debug_toolbar"]
 DEBUG = config('DEBUG')
 INSTALLED_APPS += THIRD_PARTY_APPS
 
-THIRD_PARTY_MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware']
+THIRD_PARTY_MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 MIDDLEWARE += THIRD_PARTY_MIDDLEWARE
 
 DATABASES = { 

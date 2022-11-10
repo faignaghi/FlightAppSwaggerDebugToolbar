@@ -1,9 +1,12 @@
 from rest_framework import serializers, validators
-from django.contrib.auth.models import User                                     # same
-from django.conf import settings                                                # same
+# from django.contrib.auth.models import User                                     # same
+# from django.conf import settings                                                # same
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
+from dj_rest_auth.serializers import TokenSerializer
 
-# User = settings.AUTH_USER_MODEL
+
+User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -55,3 +58,21 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+    
+    
+class UserSerializer(serializers.ModelSerializer):
+        
+        class Meta:
+            model = User
+            fields = (
+                'username',
+                'email'
+            )
+            
+class CustomTokenSerializer(TokenSerializer):
+        user = UserSerializer(read_only=True)        
+        class Meta(TokenSerializer.Meta):
+            fields = (
+                'key',
+                'user'
+            )

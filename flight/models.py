@@ -16,7 +16,7 @@ class Flight(models.Model):
         return f'{self.flight_number} - {self.departure_city} - {self.arrival_city}'
     
     
-class Passanger(models.Model):
+class Passenger(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.EmailField()
@@ -29,5 +29,5 @@ class Passanger(models.Model):
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    passanger = models.ManyToManyField(Passanger,related_name='reservations')
+    passanger = models.ManyToManyField(Passenger,related_name='reservations')
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)

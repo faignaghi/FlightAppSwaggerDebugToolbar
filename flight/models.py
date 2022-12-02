@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Flight(models.Model):
-    dlight_number = models.CharField(max_length=20)
+    flight_number = models.CharField(max_length=20)
     operating_airlines = models.CharField(max_length=20)
     departure_city = models.CharField(max_length=20)
     arrival_city = models.CharField(max_length=20)
